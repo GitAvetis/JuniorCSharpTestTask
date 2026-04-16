@@ -5,7 +5,6 @@
         static async Task Main(string[] args)
         {
             await Test();
-
         }
 
         private static async Task Test()
@@ -35,7 +34,6 @@
 
             await Task.WhenAll(readers);
             await Task.WhenAll(writers);
-
         }
     }
 }

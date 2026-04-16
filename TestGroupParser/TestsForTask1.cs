@@ -1,4 +1,4 @@
-using CleverenceSoftJuniorTest;
+using Task1;
 
 namespace Tests
 {
@@ -8,7 +8,7 @@ namespace Tests
         public void Compress_EmptyInput_ReturnsEmptyString()
         {
             string input = "";
-            string output = Task1.Compress(input);
+            string output = Program.Compress(input);
             Assert.True(string.IsNullOrEmpty(output));
         }
 
@@ -17,7 +17,7 @@ namespace Tests
         {
             string inputLine = "aaabbcccdde";
             string trueResult = "a3b2c3d2e";
-            string output = Task1.Compress(inputLine);
+            string output = Program.Compress(inputLine);
             Assert.Equal(trueResult, output);
         }
 
@@ -26,7 +26,7 @@ namespace Tests
         {
             string inputLine = "abcde";
             string trueResult = "abcde";
-            string output = Task1.Compress(inputLine);
+            string output = Program.Compress(inputLine);
             Assert.Equal(trueResult, output);
         }
 
@@ -34,7 +34,7 @@ namespace Tests
         public void Compress_NullInput_ReturnsEmptyString()
         {
             string? inputLine = null;
-            string output = Task1.Compress(inputLine);
+            string output = Program.Compress(inputLine);
             Assert.True(string.IsNullOrEmpty(output));
         }
 
@@ -42,7 +42,7 @@ namespace Tests
         public void Compress_InvalidFirstCharacter_ThrowsFormatException()
         {
             string? inputLine = "1abcde";
-            Exception ex = Assert.Throws<FormatException>(() => Task1.Compress(inputLine));
+            Exception ex = Assert.Throws<FormatException>(() => Program.Compress(inputLine));
             Assert.Contains("Invalid first character.", ex.Message);
         }
 
@@ -50,7 +50,7 @@ namespace Tests
         public void Decompress_InvalidSymbols_ThrowsFormatException()
         {
             string? inputLine = "a!b>c43de";
-            Exception ex = Assert.Throws<FormatException>(() => Task1.Decompress(inputLine));
+            Exception ex = Assert.Throws<FormatException>(() => Program.Decompress(inputLine));
             Assert.Contains("Incorrect input format", ex.Message);
         }
 
@@ -59,7 +59,7 @@ namespace Tests
         {
             string? inputLine = "a11b2c13de";
             string trueResult = "aaaaaaaaaaabbcccccccccccccde";
-            string output = CleverenceSoftJuniorTest.Task1.Decompress(inputLine);
+            string output = Program.Decompress(inputLine);
             Assert.Equal(trueResult, output);
         }
 
@@ -68,26 +68,26 @@ namespace Tests
         {
             string? inputLine = "a11b2c13de";
             string decompressed = "aaaaaaaaaaabbcccccccccccccde";
-            string output = Task1.Compress(decompressed);
+            string output = Program.Compress(decompressed);
             Assert.Equal(inputLine, output);
         }
 
         [Fact]
         public void Decompress_EmptyInput_ReturnsEmptyString()
         {
-            Assert.Equal(string.Empty, Task1.Decompress(""));
+            Assert.Equal(string.Empty, Program.Decompress(""));
         }
 
         [Fact]
         public void Decompress_SingleCharacter_ReturnsSameString()
         {
-            Assert.Equal("a", Task1.Decompress("a"));
+            Assert.Equal("a", Program.Decompress("a"));
         }
 
         [Fact]
         public void Decompress_NullInput_ReturnsEmptyString()
         {
-            Assert.Equal(string.Empty, Task1.Decompress(null));
+            Assert.Equal(string.Empty, Program.Decompress(null));
         }
     }
 }

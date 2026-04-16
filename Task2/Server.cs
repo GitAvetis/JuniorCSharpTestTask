@@ -3,7 +3,6 @@
     public static class Server
     {
         private static readonly ReaderWriterLockSlim cacheLock = new ReaderWriterLockSlim();
-      //  public static event Action<string> OnOperationCompleted;
 
         private static int _count = 0;
 
@@ -40,39 +39,5 @@
                 Console.WriteLine($"AddToCount({value}) finished by T{Task.CurrentId} at {Environment.TickCount}");
             }
         }
-
-        //public static int GetCount()
-        //{
-        //    cacheLock.EnterReadLock();
-        //    try
-        //    {
-        //        OnOperationCompleted?.Invoke($"GetCount Started by T{Task.CurrentId}");
-        //        Thread.Sleep(10);// имитация работы
-        //        return _count;
-        //    }
-        //    finally
-        //    {
-        //        cacheLock.ExitReadLock();
-        //        OnOperationCompleted?.Invoke($"GetCount finished by T{Task.CurrentId}");
-        //    }
-        //}
-
-        //public static void AddToCount(int value)
-        //{
-        //    cacheLock.EnterWriteLock();
-
-        //    try
-        //    {
-        //        _count += value;
-        //        OnOperationCompleted?.Invoke($"AddToCount({value}) Started by T{Task.CurrentId}");
-        //        Thread.Sleep(50);// имитация работы
-
-        //    }
-        //    finally
-        //    {
-        //        cacheLock.ExitWriteLock();
-        //        OnOperationCompleted?.Invoke($"AddToCount({value}) finished by T{Task.CurrentId}");
-        //    }
-        //}
     }
 }

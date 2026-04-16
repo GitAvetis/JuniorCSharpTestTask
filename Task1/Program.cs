@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace CleverenceSoftJuniorTest
+namespace Task1
 {
-    public class Task1
+    public class Program
     {
         private static void Main(string[] args)
         {
@@ -100,6 +100,5 @@ namespace CleverenceSoftJuniorTest
             int intChar = (int)c;
             return (intChar >= 97 && intChar <= 122);
         }
-
     }
 }

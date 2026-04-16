@@ -174,6 +174,5 @@ namespace Task3
 
             return new FormatedLog(date, time, level, method, message.Trim());
         }
-
     }
 }
