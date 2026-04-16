@@ -11,9 +11,8 @@ namespace Tests
         {
             string root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
             string path = Path.Combine(root, "problems.txt");
-            var formatedLog = new List<string>();
             string log = "10.03.2025 15:14:49.523 INFORMATION Версия программы: '3.4.0.48729'";
-            var result = Task3Prog.ParseLog(log, formatedLog, path);
+            var result = Task3Prog.ParseLog(log, path);
 
             Assert.NotNull(result);
             Assert.Equal("2025-03-10", result!.Date); // после ChangeDateFormat
@@ -28,9 +27,8 @@ namespace Tests
         {
             string root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
             string path = Path.Combine(root, "problems.txt");
-            var formatedLog = new List<string>();
             string log = "2025-03-10 15:14:51.5882| INFO|11|MobileComputer.GetDeviceId| Код устройства: '@MINDEO-M40-D-410244015546'";
-            var result = Task3Prog.ParseLog(log, formatedLog, path);
+            var result = Task3Prog.ParseLog(log, path);
 
             Assert.NotNull(result);
             Assert.Equal("2025-03-10", result!.Date);
@@ -47,9 +45,8 @@ namespace Tests
         {
             string root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
             string path = Path.Combine(root, "problems.txt");
-            var formatedLog = new List<string>();
             string log = "10.03.2025 15:14:49.523 BADLEVEL Сообщение ошибки";
-            var result = Task3Prog.ParseLog(log, formatedLog, path);
+            var result = Task3Prog.ParseLog(log, path);
             Assert.Null(result);
         }
 
@@ -58,9 +55,8 @@ namespace Tests
         {
             string root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
             string path = Path.Combine(root, "problems.txt");
-            var formatedLog = new List<string>();
             string log = "2025-03-10 15:14:51.5882| INFO|11"; // слишком мало токенов
-            var result = Task3Prog.ParseLog(log, formatedLog, path);
+            var result = Task3Prog.ParseLog(log, path);
             Assert.Null(result);
         }
 
@@ -69,9 +65,8 @@ namespace Tests
         {
             string root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
             string path = Path.Combine(root, "problems.txt");
-            var formatedLog = new List<string>();
             string log = "10.03.2025 15:14:49.523"; // нет сообщения
-            var result = Task3Prog.ParseLog(log, formatedLog, path);
+            var result = Task3Prog.ParseLog(log, path);
             Assert.Null(result);
         }
 
@@ -80,9 +75,8 @@ namespace Tests
         {
             string root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
             string path = Path.Combine(root, "problems.txt");
-            var formatedLog = new List<string>();
             string log = "2025-03-10 15:14:51.5882| BADLEVEL|11|MobileComputer.GetDeviceId| Сообщение";
-            var result = Task3Prog.ParseLog(log, formatedLog, path);
+            var result = Task3Prog.ParseLog(log, path);
             Assert.Null(result);
         }
 
@@ -97,7 +91,7 @@ namespace Tests
             if (File.Exists(path))
                 File.Delete(path);
 
-            Task3Prog.ParseLog(log, new List<string>(), path);
+            Task3Prog.ParseLog(log, path);
 
             string content = File.ReadAllText(path);
             Assert.Contains(log, content);
